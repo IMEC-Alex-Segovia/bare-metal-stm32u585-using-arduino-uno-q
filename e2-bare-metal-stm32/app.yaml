@@ -1,0 +1,6 @@
+name: e2-bare-metal-stm32
+version: 1.0.0
+sketch:
+  path: sketch
+python:
+  entrypoint: python/main.py
