@@ -55,6 +55,7 @@ SECTIONS
         *(.rodata._ZTVN12_GLOBAL__N_121system_error_categoryE)
         *(.rodata._ZTVN12_GLOBAL__N_122generic_error_categoryE)
         *(.rodata._ZTVN7arduino12ZephyrSerialE)
+        *(.rodata._ZTVN7arduino9IPAddressE)
         *(.rodata._ZTVSt11logic_error)
         *(.rodata._ZTVSt12length_error)
         *(.rodata._ZTVSt9bad_alloc)

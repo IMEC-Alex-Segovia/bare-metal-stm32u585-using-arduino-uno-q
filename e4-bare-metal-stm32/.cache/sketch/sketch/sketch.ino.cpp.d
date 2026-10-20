@@ -294,8 +294,8 @@
  /home/arduino/.arduino15/packages/arduino/hardware/zephyr/1.0.0/cores/arduino/time_macros.h \
  /home/arduino/.arduino15/packages/arduino/hardware/zephyr/1.0.0/cores/arduino/overloads.h \
  /home/arduino/.arduino15/packages/arduino/hardware/zephyr/1.0.0/variants/arduino_uno_q_stm32u585xx/postvariant.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/Arduino_RouterBridge.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/bridge.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/Arduino_RouterBridge.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/bridge.h \
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/Arduino_RPClite.h \
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/transport.h \
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/client.h \
@@ -330,11 +330,12 @@
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/dispatcher.h \
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/wrapper.h \
  /home/arduino/.arduino15/internal/Arduino_RPClite_0.3.1_3aaf611bc915560f/Arduino_RPClite/src/SerialTransport.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/monitor.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/monitor.h \
  /home/arduino/.arduino15/packages/arduino/hardware/zephyr/1.0.0/cores/arduino/api/RingBuffer.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/tcp_client.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/tcp/tcp_client.h \
  /home/arduino/.arduino15/packages/arduino/hardware/zephyr/1.0.0/cores/arduino/api/Client.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/tcp_server.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/hci.h \
- /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.3_456a4ab6b378b066/Arduino_RouterBridge/src/udp_bridge.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/tcp/bridge_tcp_common.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/tcp/tcp_server.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/hci.h \
+ /home/arduino/.arduino15/internal/Arduino_RouterBridge_0.4.4_5c166a9aa15aeb64/Arduino_RouterBridge/src/udp_bridge.h \
  /home/arduino/ArduinoApps/e4-bare-metal-stm32/.cache/sketch/sketch/systick.h

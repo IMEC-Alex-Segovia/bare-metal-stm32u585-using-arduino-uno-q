@@ -21,8 +21,8 @@
  * f: D1 -> GPIOB6
  * g: D0 -> GPIOB7
  *
- * an1: D9 -> GPIOB8
- * an2: D10 -> GPIOB9
+ * cat1: D9 -> GPIOB8
+ * cat2: D10 -> GPIOB9
  *
  * pins used for buttons
  *
@@ -57,6 +57,11 @@
 #define SEG_G_ON  (1U << 7)
 #define SEG_G_OFF (1U << 23)
 
+#define SHOW_TENS  (1U << 8 | 1U << 25)
+#define SHOW_UNITS (1U << 24 | 1U << 9)
+
+#define MAX_DELAY_COUNT 50 - 1
+
 static const uint32_t digits[] = {
   // a, b, c, d, e, f, g
   (SEG_A_ON  | SEG_B_ON  | SEG_C_ON  | SEG_D_ON  | SEG_E_ON  | SEG_F_ON  | SEG_G_OFF), // 0
@@ -70,6 +75,10 @@ static const uint32_t digits[] = {
   (SEG_A_ON  | SEG_B_ON  | SEG_C_ON  | SEG_D_ON  | SEG_E_ON  | SEG_F_ON  | SEG_G_ON ), // 8
   (SEG_A_ON  | SEG_B_ON  | SEG_C_ON  | SEG_D_ON  | SEG_E_OFF | SEG_F_ON  | SEG_G_ON ), // 9
 };
+
+uint8_t count_units = 0;
+uint8_t count_tens = 0;
+uint8_t count_delay = MAX_DELAY_COUNT;
 
 void setup() {
   RCC->AHB2ENR1 |= (1U << 1);
@@ -86,10 +95,21 @@ void setup() {
 }
 
 void loop() {
-  // Tu lógica aquí
+  GPIOB->BSRR = (digits[count_units] | SHOW_UNITS);
+  SysTickDelayMs(10);
 
-  for (int i = 0; i < 10; i++) {
-    GPIOB->BSRR = digits[i];
-    SysTickDelayMs(1000);
+  GPIOB->BSRR = (digits[count_tens] | SHOW_TENS);
+  SysTickDelayMs(10);
+
+  if (count_delay == 0) {
+    count_delay = MAX_DELAY_COUNT;
+    if (count_units == 9) {
+      count_units = 0;
+      count_tens = (count_tens == 9) ? 0 : count_tens + 1; 
+    } else {
+      count_units += 1;
+    }
+  } else {
+    count_delay -= 1;
   }
 }
