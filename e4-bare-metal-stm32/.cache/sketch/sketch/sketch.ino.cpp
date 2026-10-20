@@ -23,8 +23,8 @@
  * f: D1 -> GPIOB6
  * g: D0 -> GPIOB7
  *
- * an1: D9 -> GPIOB8
- * an2: D10 -> GPIOB9
+ * cat1: D9 -> GPIOB8
+ * cat2: D10 -> GPIOB9
  *
  * pins used for buttons
  *
@@ -82,11 +82,23 @@ uint8_t count_units = 0;
 uint8_t count_tens = 0;
 uint8_t count_delay = MAX_DELAY_COUNT;
 
-#line 83 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
+uint8_t btn_A_ls = 0;
+uint8_t btn_B_ls = 0;
+uint8_t btn_C_ls = 0;
+
+uint8_t btn_A_cs = 0;
+uint8_t btn_B_cs = 0;
+uint8_t btn_C_cs = 0;
+
+uint8_t pause = 0;
+
+uint8_t count_up = 1;
+
+#line 95 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
 void setup();
-#line 97 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
+#line 109 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
 void loop();
-#line 83 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
+#line 95 "/home/arduino/ArduinoApps/e4-bare-metal-stm32/sketch/sketch.ino"
 void setup() {
   RCC->AHB2ENR1 |= (1U << 1);
   
@@ -102,22 +114,70 @@ void setup() {
 }
 
 void loop() {
+
+  btn_A_ls = btn_A_cs;
+  btn_B_ls = btn_B_cs;
+  btn_C_ls = btn_C_cs;
+
   GPIOB->BSRR = (digits[count_units] | SHOW_UNITS);
   SysTickDelayMs(10);
 
   GPIOB->BSRR = (digits[count_tens] | SHOW_TENS);
   SysTickDelayMs(10);
 
-  if (count_delay == 0) {
-    count_delay = MAX_DELAY_COUNT;
-    if (count_units == 9) {
-      count_units = 0;
-      count_tens = (count_tens == 9) ? 0 : count_tens + 1; 
+  btn_A_cs = (GPIOB->IDR & (1U << 15)) ? 1 : 0;
+  btn_B_cs = (GPIOB->IDR & (1U << 14)) ? 1 : 0;
+  btn_C_cs = (GPIOB->IDR & (1U << 13)) ? 1 : 0;
+
+  if ((btn_A_ls == 1) && (btn_A_cs == 0)) {
+    pause ^= 1U;
+    count_up = 1;  
+  }
+  if ((btn_B_ls == 1) && (btn_B_cs == 0)) {
+    pause ^= 1U; 
+    count_up = 0;
+  }
+
+  if (pause == 0) {
+    
+    if (count_delay == 0) {
+      count_delay = MAX_DELAY_COUNT;
+      if (count_up == 1) {  
+        if (count_units == 9) {
+          // count_units = 0;
+          if (count_tens == 9) {
+            // count_tens = 0;
+            pause = 1; 
+          } else {
+            count_tens += 1;
+            count_units = 0;
+          } 
+        } else {
+          count_units += 1;
+        }
+      } else {
+        if (count_units == 0) {
+          // count_units = 9;
+          if (count_tens == 0) {
+            // count_tens = 0;
+            pause = 1; 
+          } else {
+            count_tens -= 1;
+            count_units = 9;
+          } 
+        } else {
+          count_units -= 1;
+        }
+      }
     } else {
-      count_units += 1;
+      count_delay -= 1;
     }
+
   } else {
-    count_delay -= 1;
+    if ((btn_C_ls == 1) && (btn_C_cs == 0)) {
+      count_units = (count_up == 1) ? 0 : 9;
+      count_tens = (count_up == 1) ? 0 : 9;
+    }
   }
 }
 
